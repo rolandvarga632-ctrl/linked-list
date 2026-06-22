@@ -21,5 +21,6 @@ struct List {
 void Init_Linked_List(List *list);
 void list_push(List *list, void *a);
 void freenodes(List *list);
-//void print_list(List *list);
+void* list_pop(List *list, int index);
+void print_list(List *list);
 #endif
