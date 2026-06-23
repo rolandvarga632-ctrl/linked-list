@@ -24,13 +24,13 @@ void list_push(List *list, void *a) {
 
 		list->head = node;
 		list->tail = node;
-		list->size = 1;		
+		list->size++;		
 	} else {
 		
 		node->prev = list->tail;
 		list->tail->next = node;
 		list->tail = node;
-		list->size+=1;
+		list->size++;
 
 	}
 }
@@ -120,6 +120,7 @@ void* list_pop(List *list, int index) {
 					next_node->prev = prev_node;
 					next_node = NULL;
 					prev_node = NULL;
+					list->size--;
 					free(current);
 					return data;
 				}
@@ -141,6 +142,10 @@ void print_list(List *list) {
 	Node *next_node;
 
 	if (current == NULL) return;
+	printf("first= %d, last= %d, size= %d\n",
+		 (int)(intptr_t)current->data,
+		 (int)(intptr_t)list->tail->data, 
+		 (int)list->size);
 	while (current)
 	{
 		next_node = current->next;
